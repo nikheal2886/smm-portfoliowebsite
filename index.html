@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> KARADS </title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Styles for High Animation and Dark Theme */
+        :root {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0d0f; /* Deep Charcoal/Near Black */
+            color: #e5e7eb; /* Off-White Text */
+            overflow-x: hidden;
+        }
+
+        /* --- Custom Scroll Reveal Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Hero Text Animation - Initial Load */
+        @keyframes text-slide-up {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .hero-text-animate > * {
+            animation: text-slide-up 1.0s ease-out forwards;
+            opacity: 0;
+        }
+        .hero-text-animate h1 { animation-delay: 0.2s; }
+        .hero-text-animate p { animation-delay: 0.4s; }
+        .hero-text-animate a { animation-delay: 0.6s; }
+
+        /* Custom glow effect on button */
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(147, 51, 234, 0.1); /* Violet glow */
+            border-radius: 50%;
+            transition: all 0.5s ease-out;
+            transform: translate(-50%, -50%) scale(0);
+        }
+        .btn-glow:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-black/70 backdrop-blur-md border-b border-gray-800 transition duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-extrabold tracking-tight text-white">KARADS<span class="text-indigo-400">.</span></a>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#services" class="text-gray-400 hover:text-indigo-400 transition">Services</a>
+                <a href="#portfolio" class="text-gray-400 hover:text-indigo-400 transition">Portfolio</a>
+                <a href="#contact" class="px-3 py-1 bg-indigo-600 rounded-full text-white hover:bg-indigo-500 transition btn-glow">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section class="relative h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-black to-gray-900">
+            <!-- Subtle Animated Background Grid/Lines -->
+            <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#202022 1px, transparent 1px); background-size: 20px 20px;"></div>
+            
+            <div class="max-w-4xl mx-auto text-center z-10 p-6 hero-text-animate">
+                <p class="text-indigo-400 uppercase tracking-widest text-sm mb-4">Elevate Your Digital Presence</p>
+                <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black mb-6 leading-tight text-white">
+                    We Craft <span class="text-indigo-500">Social Momentum,</span> Not Just Content.
+                </h1>
+                <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                    A boutique social media management firm specializing in high-impact strategy, creative execution, and measurable growth.
+                </p>
+                <a href="#contact" class="inline-flex items-center space-x-2 text-lg font-semibold bg-indigo-600 px-8 py-3 rounded-xl hover:bg-indigo-500 transition duration-300 transform hover:scale-[1.03] btn-glow">
+                    <span>Inquire About Growth</span>
+                    <i data-lucide="arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. Services / Approach Section -->
+        <section id="services" class="py-24 bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-4xl font-bold text-white mb-3">Our Core Velocity</h2>
+                    <p class="text-lg text-gray-400">Strategy is our foundation. Execution is our art.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <!-- Service Card 1 -->
+                    <div class="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 reveal hover:shadow-indigo-500/20 transition duration-500">
+                        <i data-lucide="camera" class="w-10 h-10 text-indigo-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-3">We shoot</h3>
+                        <p class="text-gray-400">We  create Qualtity , Brand Specific, Organic </p>
+                    </div>
+
+                    <!-- Service Card 2 -->
+                    <div class="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 reveal hover:shadow-indigo-500/20 transition duration-500" style="transition-delay: 0.15s;">
+                        <i data-lucide="paintbrush" class="w-10 h-10 text-indigo-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-3">We edit </h3>
+                        <p class="text-gray-400">From high-quality visual assets to engaging short-form video, our content is crafted to stop the scroll and build authentic connection.</p>
+                    </div>
+
+                    <!-- Service Card 3 -->
+                    <div class="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 reveal hover:shadow-indigo-500/20 transition duration-500" style="transition-delay: 0.3s;">
+                        <i data-lucide="bar-chart-2" class="w-10 h-10 text-indigo-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-3">We manage </h3>
+                        <p class="text-gray-400">Our performance cycles are continuous. We use real-time analytics to refine campaigns, ensuring every interaction contributes to your bottom line.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Portfolio Showcase -->
+        <section id="portfolio" class="py-24 bg-black">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    
+                    <h2 class="text-5xl font-extrabold text-white mt-2">our expertise</h2>
+                </div>
+                
+                <!-- Portfolio Grid 1 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                    <div class="reveal">
+                        <div class="aspect-video bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
+                            <!-- Placeholder for high-quality image/video mock-up -->
+                            <div class="h-full w-full flex items-center justify-center text-gray-500 text-xl font-mono p-10">
+                                <div class="text-center">
+                                    <i data-lucide="monitor" class="w-12 h-12 mx-auto mb-2 text-indigo-500"></i>
+                                    <p>some of our best photo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center reveal" style="transition-delay: 0.15s;">
+                        <span class="text-sm font-semibold text-indigo-400 uppercase mb-2"> Architectural firms</span>
+                        <h3 class="text-3xl font-bold text-white mb-4">Interior </h3>
+                        <p class="text-gray-400 mb-4"> we have good Experince , Creating , Editing and Manageing content for Architectural firms .</p>
+                        <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+                            <li>organic Growth</li>
+                            <li> engaging Content</li>
+                            <li> trendy content</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Portfolio Grid 2 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:flex-row-reverse">
+                    <div class="reveal">
+                        <div class="aspect-video bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
+                            <!-- Placeholder for high-quality image/video mock-up -->
+                            <div class="h-full w-full flex items-center justify-center text-gray-500 text-xl font-mono p-10">
+                                <div class="text-center">
+                                    <i data-lucide="globe" class="w-12 h-12 mx-auto mb-2 text-indigo-500"></i>
+                                    <p>Mockup Placeholder: SaaS Lead Generation Funnel</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center reveal" style="transition-delay: 0.15s;">
+                        <span class="text-sm font-semibold text-indigo-400 uppercase mb-2">Builder line </span>
+                        <h3 class="text-3xl font-bold text-white mb-4">Our workspace</h3>
+                        <p class="text-gray-400 mb-4">Platforms We Create and Manage on </p>
+                        <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+                            <li>Instagram </li>
+                            <li>LinkedIn</li>
+                            
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section id="team" class="relative py-24 md:py-32 overflow-hidden bg-gradient-to-br from-gray-950 to-black border-t border-indigo-900/50">
+    <!-- Background Animated Grid/Pattern - More prominent --><div class="absolute inset-0 z-0 opacity-15" style="background-image: linear-gradient(rgba(147, 51, 234, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(147, 51, 234, 0.05) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <div class="absolute inset-0 z-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent opacity-20"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16 reveal-header">
+            <h2 class="text-5xl lg:text-6xl font-extrabold text-white mb-4 leading-tight">
+                The Architects of <span class="text-indigo-400">KARADS</span>
+            </h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Meet the strategic minds and creative forces dedicated to amplifying your brand's presence and impact.
+            </p>
+        </div>
+
+       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Team Member 1: Swapnil Karad (Frame Added) -->
+                    <div class="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 reveal text-center team-card transition duration-500">
+                        <div class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-indigo-500 overflow-hidden shadow-lg bg-gray-700">
+                            <!-- Placeholder Image for Swapnil -->
+                            <img src="https://placehold.co/96x96/4A00B7/FFFFFF?text=Swapnil" alt="Swapnil Karad" class="w-full h-full object-cover transition duration-500 grayscale hover:grayscale-0"/>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-1">Swapnil Karad</h3>
+                        <p class="text-indigo-400 font-semibold mb-3">Director of Strategy & Founding Partner</p>
+                        <p class="text-gray-400 text-sm">Swapnil architects the high-level strategies that define client growth paths, ensuring every campaign is aligned with market opportunity and scalable impact.</p>
+                    </div>
+
+                    <!-- Team Member 2: Nikhil Karad (Frame Added) -->
+<div class="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 reveal text-center team-card transition duration-500" style="transition-delay: 0.15s;">
+    <div class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-indigo-500 overflow-hidden shadow-lg bg-gray-700">
+        <!-- The text causing the overlap has been removed from inside the image frame. -->
+        <img src="https://drive.google.com/uc?export=view&id=1pnr_83MOYvLF_9sxtQ23q7tC_6I2JhuF" alt="Portrait of Nikhil Karad, CEO" class="w-full h-full object-cover object-top transition duration-500 grayscale hover:grayscale-0"/>
+    </div>
+    <h3 class="text-2xl font-bold text-white mb-1">Nikhil Karad</h3>
+    <p class="text-indigo-400 font-semibold mb-3">Chief Executive Officer (CEO)</p>
+    <p class="text-gray-400 text-sm">As the CEO, Nikhil drives the company's vision, operations, and business development, fostering a culture of excellence and client-centric innovation.</p>
+</div>
+                    <!-- Team Member 3: Deesha Jadhav (Frame Added) -->
+                    <div class="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 reveal text-center team-card transition duration-500" style="transition-delay: 0.3s;">
+                        <div class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-indigo-500 overflow-hidden shadow-lg bg-gray-700">
+                            <!-- Placeholder Image for Deesha -->
+                            <img src="https://placehold.co/96x96/4A00B7/FFFFFF?text=Deesha" alt="Deesha Jadhav" class="w-full h-full object-cover transition duration-500 grayscale hover:grayscale-0"/>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-1">Deesha Jadhav</h3>
+                        <p class="text-indigo-400 font-semibold mb-3">Lead Content Strategist & Editorial Director</p>
+                        <p class="text-gray-400 text-sm">Deesha leads the creative team, ensuring all content is expertly crafted, on-brand, and optimized for maximum engagement across all social platforms.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    <style>
+        /* Specific animations for this section to ensure uniqueness */
+        @keyframes pulse-icon {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); opacity: 0.9; }
+            100% { transform: scale(1); }
+        }
+        .icon-pulse {
+            animation: pulse-icon 2s infinite ease-in-out;
+        }
+
+        /* Reveal animations for this section */
+        .reveal-header {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal-header.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(60px) scale(0.95);
+            transition: opacity 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealHeader = document.querySelector('.reveal-header');
+            const revealItems = document.querySelectorAll('.reveal-item');
+            
+            const observerOptions = {
+                rootMargin: '0px 0px -15% 0px', // Trigger when 15% of element is in view
+                threshold: 0.1
+            };
+
+            const headerObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const itemObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            headerObserver.observe(revealHeader);
+            revealItems.forEach(item => {
+                itemObserver.observe(item);
+            });
+
+            // Ensure Lucide icons are re-created if this snippet is loaded dynamically
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</section>
+
+        <!-- 4. Contact Section -->
+        <section id="contact" class="py-24 bg-gray-900 border-t border-gray-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-5xl font-extrabold text-white mb-3">Ready to Build Momentum?</h2>
+                    <p class="text-xl text-gray-400">Let's discuss your next social media breakthrough.</p>
+                </div>
+                
+                <form id="contact-form" class="space-y-6 bg-gray-800 p-8 sm:p-12 rounded-2xl shadow-2xl reveal border border-gray-700">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-indigo-500 focus:border-indigo-500 transition duration-300">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-indigo-500 focus:border-indigo-500 transition duration-300">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="company" class="block text-sm font-medium text-gray-300 mb-2">Company/Brand Name</label>
+                        <input type="text" id="company" name="company" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-indigo-500 focus:border-indigo-500 transition duration-300">
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300 mb-2">How can we help you grow?</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-indigo-500 focus:border-indigo-500 transition duration-300"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full inline-flex justify-center items-center space-x-2 text-lg font-semibold bg-indigo-600 px-6 py-3 rounded-xl hover:bg-indigo-500 transition duration-300 transform hover:scale-[1.01] btn-glow">
+                        <span>Send Consultation Request</span>
+                        <i data-lucide="send"></i>
+                    </button>
+
+                    <!-- Confirmation Message Container -->
+                    <div id="confirmation-message" class="hidden mt-4 p-4 rounded-lg bg-green-900/50 text-green-400 border border-green-700 text-center font-medium">
+                        Thank you for your inquiry! We'll be in touch soon!
+                    </div>
+                </form>
+
+                <div class="text-center mt-12 reveal" style="transition-delay: 0.3s;">
+                    <p class="text-gray-500 mb-2">Or reach us directly:</p>
+                    <p class="text-lg font-medium text-gray-300">
+                        <i data-lucide="mail" class="w-4 h-4 inline mr-2 text-indigo-400"></i>hello@KARADS.com
+                    </p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p class="mb-4 text-sm">&copy; 2025 KARADS . Crafted for Momentum.</p>
+            <div class="flex justify-center space-x-6">
+                <!-- Social Icons -->
+                <a href="#" class="text-gray-400 hover:text-indigo-400 transition" aria-label="Instagram"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-indigo-400 transition" aria-label="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-indigo-400 transition" aria-label="Twitter/X"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Icons and Scroll Reveal -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Scroll Reveal Logic using Intersection Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Stop observing once element is visible
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                // Root margin ensures the animation triggers when the element is 10% inside the viewport
+                rootMargin: '0px 0px -10% 0px',
+                threshold: 0.1
+            });
+
+            reveals.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // 2. Contact Form Submission Handling (No Backend)
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const confirmationMessage = document.getElementById('confirmation-message');
+            
+            // Disable button and show loading state
+            submitButton.textContent = 'Sending...';
+            submitButton.classList.add('opacity-60', 'cursor-not-allowed');
+            
+            // Simulate API call delay (2 seconds)
+            setTimeout(() => {
+                // Reset form fields
+                form.reset();
+
+                // Show confirmation message
+                confirmationMessage.classList.remove('hidden');
+                
+                // Reset button state
+                submitButton.textContent = 'Send Consultation Request';
+                submitButton.classList.remove('opacity-60', 'cursor-not-allowed');
+
+                // Hide confirmation message after 5 seconds
+                setTimeout(() => {
+                    confirmationMessage.classList.add('hidden');
+                }, 5000);
+
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
