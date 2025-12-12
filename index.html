@@ -139,66 +139,252 @@
             </div>
         </section>
 
-        <!-- 3. Portfolio Showcase -->
-        <section id="portfolio" class="py-24 bg-black">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 reveal">
-                    
-                    <h2 class="text-5xl font-extrabold text-white mt-2">Our expertise</h2>
-                </div>
-                
-                <!-- Portfolio Grid 1 -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-                    <div class="reveal">
-                        <div class="aspect-video bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
-                            <!-- Placeholder for high-quality image/video mock-up -->
-                            <div class="h-full w-full flex items-center justify-center text-gray-500 text-xl font-mono p-10">
-                                <div class="text-center">
-                                    <i data-lucide="monitor" class="w-12 h-12 mx-auto mb-2 text-indigo-500"></i>
-                                    <p>some of our best photo</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col justify-center reveal" style="transition-delay: 0.15s;">
-                        <span class="text-sm font-semibold text-indigo-400 uppercase mb-2"> Architectural firms</span>
-                        <h3 class="text-3xl font-bold text-white mb-4">Interior </h3>
-                        <p class="text-gray-400 mb-4"> we have good Experince in Creating , Editing and Managing content for Architectural firms .</p>
-                        <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
-                            <li>organic Growth</li>
-                            <li> engaging Content</li>
-                            <li> trendy content</li>
-                        </ul>
-                    </div>
-                </div>
+       <!-- ====== All-in-One Portfolio Gallery (drop-in replacement) ====== -->
+<section id="portfolio" class="py-24 bg-black">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8 reveal">
+      <p class="text-indigo-400 uppercase tracking-widest text-sm mb-4">Our Work</p>
+      <h2 class="text-5xl font-extrabold text-white mt-2">Portfolio</h2>
+      <p class="text-gray-400 max-w-2xl mx-auto mt-3">All assets in one gallery. Click to enlarge. Videos play when you press play.</p>
+    </div>
 
-                <!-- Portfolio Grid 2 -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:flex-row-reverse">
-                    <div class="reveal">
-                        <div class="aspect-video bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
-                            <!-- Placeholder for high-quality image/video mock-up -->
-                            <div class="h-full w-full flex items-center justify-center text-gray-500 text-xl font-mono p-10">
-                                <div class="text-center">
-                                    <i data-lucide="globe" class="w-12 h-12 mx-auto mb-2 text-indigo-500"></i>
-                                    <p>we'll need a photo </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col justify-center reveal" style="transition-delay: 0.15s;">
-                        <span class="text-sm font-semibold text-indigo-400 uppercase mb-2">Builder line </span>
-                        <h3 class="text-3xl font-bold text-white mb-4">Our workspace</h3>
-                        <p class="text-gray-400 mb-4">Platforms We Create and Manage on </p>
-                        <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
-                            <li>Instagram </li>
-                            <li>LinkedIn</li>
-                            
-                        </ul>
-                    </div>
-                </div>
+    <div class="flex items-center justify-between mb-6 reveal">
+      <div class="text-sm text-gray-400">Assets: <span id="asset-count">0</span></div>
+      <div class="space-x-2 text-sm">
+        <button id="gallery-reload" class="px-3 py-1 bg-gray-800 rounded text-white">Reload</button>
+      </div>
+    </div>
 
-            </div>
-        </section>
+    <!-- Gallery Grid -->
+    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 reveal">
+      <!-- assets injected here -->
+    </div>
+
+    <!-- Lightbox -->
+    <div id="gallery-lightbox" class="fixed inset-0 z-60 hidden items-center justify-center bg-black/90 p-6" aria-hidden="true" role="dialog">
+      <div class="w-full max-w-5xl">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 id="lb-title" class="text-white text-lg font-semibold"></h3>
+            <div id="lb-meta" class="text-sm text-gray-400"></div>
+          </div>
+          <div class="space-x-2">
+            <button id="lb-prev" class="px-3 py-2 bg-gray-800 rounded text-white">Prev</button>
+            <button id="lb-next" class="px-3 py-2 bg-gray-800 rounded text-white">Next</button>
+            <button id="lb-close" class="px-3 py-2 bg-transparent border border-gray-600 rounded text-gray-200">Close</button>
+          </div>
+        </div>
+
+        <div class="bg-gray-900 p-4 rounded-lg flex flex-col items-center">
+          <img id="lb-img" src="" alt="" class="max-h-[75vh] max-w-full rounded mb-3 object-contain hidden"/>
+          <video id="lb-video" src="" controls class="max-h-[75vh] max-w-full rounded mb-3 object-contain hidden"></video>
+          <div id="lb-caption" class="text-gray-300 text-sm mb-4"></div>
+
+          <div id="lb-thumbs" class="w-full overflow-x-auto py-2 flex gap-2 hide-scrollbar"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  // ---------- CONFIG ----------
+  // Configured for your repo:
+  const owner = 'nikheal2886';
+  const repo  = 'smm-portfoliowebsite';
+  const branch = 'main';
+  const imagesFolder = 'images'; // folder to scan (can contain subfolders)
+
+  // Optional fallback for quick local preview (static URLs)
+  const staticAssets = [
+    // Add raw URLs here if you want local preview without pushing to GitHub.
+  ];
+
+  // ---------- DOM ----------
+  const grid = document.getElementById('gallery-grid');
+  const countEl = document.getElementById('asset-count');
+  const reloadBtn = document.getElementById('gallery-reload');
+
+  const lb = document.getElementById('gallery-lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbVideo = document.getElementById('lb-video');
+  const lbTitle = document.getElementById('lb-title');
+  const lbMeta = document.getElementById('lb-meta');
+  const lbCaption = document.getElementById('lb-caption');
+  const lbClose = document.getElementById('lb-close');
+  const lbPrev = document.getElementById('lb-prev');
+  const lbNext = document.getElementById('lb-next');
+  const lbThumbs = document.getElementById('lb-thumbs');
+
+  // State
+  let assets = []; // flattened list { type:'image'|'video', src, name, path }
+  let activeIndex = -1;
+
+  // helpers
+  function isVideo(name) { return /\.(mp4|webm|mov)$/i.test(name); }
+  function isImage(name) { return /\.(jpe?g|png|webp|avif|gif)$/i.test(name); }
+  function prettify(name) {
+    return name.replace(/\.[^/.]+$/, '').replace(/[-_]/g,' ').replace(/\b\w/g, c=>c.toUpperCase());
+  }
+
+  // render gallery grid
+  function renderGrid(list) {
+    grid.innerHTML = '';
+    list.forEach((a, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'bg-gray-800 rounded-2xl overflow-hidden p-0 border border-gray-700 focus:outline-none gallery-item';
+      btn.setAttribute('aria-label', 'Open asset ' + (i+1));
+      btn.innerHTML = `
+        <div class="aspect-video overflow-hidden relative">
+          ${a.type === 'image' ? 
+            `<img loading="lazy" src="${a.src}" alt="${a.name||''}" class="w-full h-full object-cover">` :
+            `<div class="w-full h-full bg-gray-700 flex items-center justify-center text-white/90"><svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-6.518 3.76A.75.75 0 017 14.33V9.67a.75.75 0 011.234-.645l6.518 3.763a.75.75 0 010 1.29z"/></svg></div>`
+          }
+        </div>
+        <div class="p-3 text-left">
+          <div class="text-sm font-medium text-white truncate">${a.name || ''}</div>
+          <div class="text-xs text-gray-400">Tap to view</div>
+        </div>
+      `;
+      btn.addEventListener('click', () => openLightbox(i));
+      grid.appendChild(btn);
+    });
+    countEl.textContent = list.length;
+    grid.classList.add('active');
+  }
+
+  // lightbox behavior
+  function openLightbox(index) {
+    activeIndex = index;
+    const a = assets[index];
+    if (!a) return;
+    lbTitle.textContent = a.name || prettify(a.path || a.src);
+    lbCaption.textContent = a.path || '';
+    renderThumbs();
+    showAsset(index);
+    lb.classList.remove('hidden');
+    lb.setAttribute('aria-hidden','false');
+  }
+
+  function renderThumbs() {
+    lbThumbs.innerHTML = '';
+    assets.forEach((a, i) => {
+      const t = document.createElement('button');
+      t.className = 'flex-none rounded overflow-hidden border border-gray-700';
+      t.style.width = '96px';
+      t.innerHTML = a.type === 'image' ? `<img loading="lazy" src="${a.src}" alt="thumb ${i+1}" class="w-full h-20 object-cover">` : `<div class="w-full h-full bg-gray-700 flex items-center justify-center text-white/80"><svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-6.518 3.76A.75.75 0 017 14.33V9.67a.75.75 0 011.234-.645l6.518 3.763a.75.75 0 010 1.29z"/></svg></div>`;
+      t.addEventListener('click', (e)=>{ e.stopPropagation(); showAsset(i); });
+      lbThumbs.appendChild(t);
+    });
+  }
+
+  function showAsset(i) {
+    if (i < 0) i = assets.length - 1;
+    if (i >= assets.length) i = 0;
+    activeIndex = i;
+    const a = assets[i];
+    if (!a) return;
+
+    // pause current video
+    try { if (!lbVideo.paused) { lbVideo.pause(); lbVideo.currentTime = 0; } } catch(e){}
+
+    if (a.type === 'image') {
+      lbVideo.classList.add('hidden'); lbVideo.src = '';
+      lbImg.src = a.src; lbImg.classList.remove('hidden');
+    } else {
+      lbImg.classList.add('hidden'); lbImg.src = '';
+      lbVideo.src = a.src; lbVideo.classList.remove('hidden');
+      // no autoplay — user must press play (as requested)
+    }
+    lbMeta.textContent = `${i+1} / ${assets.length}`;
+    // thumbnail highlight
+    Array.from(lbThumbs.children).forEach((btn, idx) => btn.style.outline = (idx === i) ? '2px solid rgba(99,102,241,0.9)' : 'none');
+  }
+
+  function closeLightbox() {
+    try { lbVideo.pause(); lbVideo.currentTime = 0; } catch(e){}
+    lb.classList.add('hidden'); lb.setAttribute('aria-hidden','true'); activeIndex = -1;
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', ()=> showAsset(activeIndex - 1));
+  lbNext.addEventListener('click', ()=> showAsset(activeIndex + 1));
+  lb.addEventListener('click', (e)=> { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', (e)=> {
+    if (lb.classList.contains('hidden')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showAsset(activeIndex - 1);
+    if (e.key === 'ArrowRight') showAsset(activeIndex + 1);
+  });
+
+  // ---------- GitHub fetching (scan images/ and subfolders) ----------
+  async function fetchAllAssets() {
+    // placeholders guard
+    if (!owner || !repo || owner === 'YOUR_GITHUB_USERNAME' || repo === 'YOUR_REPO_NAME') {
+      if (staticAssets.length) { assets = staticAssets; renderGrid(assets); }
+      else console.warn('Gallery: set owner/repo or add staticAssets for fallback.');
+      return;
+    }
+
+    try {
+      assets = [];
+      // fetch top-level listing
+      const rootUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${imagesFolder}?ref=${branch}`;
+      const res = await fetch(rootUrl);
+      if (!res.ok) throw new Error('GitHub API error: ' + res.status);
+      const entries = await res.json();
+
+      // helper to process an array of entries (files) and push matching assets
+      const processFiles = (files, pathPrefix='') => {
+        (files || []).forEach(f => {
+          if (f.type !== 'file') return;
+          if (isImage(f.name)) assets.push({ type:'image', src: f.download_url, name: prettify(f.name), path: pathPrefix + f.name });
+          else if (isVideo(f.name)) assets.push({ type:'video', src: f.download_url, name: prettify(f.name), path: pathPrefix + f.name });
+        });
+      };
+
+      // first add files directly inside imagesFolder
+      const filesRoot = entries.filter(e => e.type === 'file');
+      processFiles(filesRoot, '');
+
+      // then for each directory, fetch its contents and add files
+      const dirs = entries.filter(e => e.type === 'dir');
+      for (const d of dirs) {
+        try {
+          const dirRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${imagesFolder}/${d.name}?ref=${branch}`);
+          if (!dirRes.ok) { console.warn('Failed to fetch folder', d.name, dirRes.status); continue; }
+          const dirFiles = await dirRes.json();
+          processFiles(dirFiles, d.name + '/');
+        } catch (err) {
+          console.error('Error fetching folder', d.name, err);
+        }
+      }
+
+      // final: if empty and static fallback exists use it
+      if (assets.length === 0 && staticAssets.length) assets = staticAssets;
+
+      renderGrid(assets);
+    } catch (err) {
+      console.error('Failed to fetch assets from GitHub:', err);
+      if (staticAssets.length) { assets = staticAssets; renderGrid(assets); }
+    }
+  }
+
+  // reload button
+  reloadBtn.addEventListener('click', fetchAllAssets);
+
+  // initial run
+  document.addEventListener('DOMContentLoaded', ()=> setTimeout(fetchAllAssets, 200));
+
+  // expose for debug
+  window.__KARADS_gallery = { fetchAllAssets, assets };
+
+})();
+</script>
+<!-- ====== End All-in-One Portfolio Gallery ====== -->
+
         <section id="team" class="relative py-24 md:py-32 overflow-hidden bg-gradient-to-br from-gray-950 to-black border-t border-indigo-900/50">
     <!-- Background Animated Grid/Pattern - More prominent --><div class="absolute inset-0 z-0 opacity-15" style="background-image: linear-gradient(rgba(147, 51, 234, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(147, 51, 234, 0.05) 1px, transparent 1px); background-size: 40px 40px;"></div>
     <div class="absolute inset-0 z-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent opacity-20"></div>
