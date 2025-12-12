@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARAD CATALYST </title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Styles for High Animation and Dark Theme */
+        :root {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0d0f; /* Deep Charcoal/Near Black */
+            color: #e5e7eb; /* Off-White Text */
+            overflow-x: hidden;
+        }
+
+        /* --- Custom Scroll Reveal Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Hero Text Animation - Initial Load */
+        @keyframes text-slide-up {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .hero-text-animate > * {
+            animation: text-slide-up 1.0s ease-out forwards;
+            opacity: 0;
+        }
+        .hero-text-animate h1 { animation-delay: 0.2s; }
+        .hero-text-animate p { animation-delay: 0.4s; }
+        .hero-text-animate a { animation-delay: 0.6s; }
+
+        /* Custom glow effect on button */
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(147, 51, 234, 0.1); /* Violet glow */
+            border-radius: 50%;
+            transition: all 0.5s ease-out;
+            transform: translate(-50%, -50%) scale(0);
+        }
+        .btn-glow:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-black/70 backdrop-blur-md border-b border-gray-800 transition duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                        <a href="#" class="text-xl font-extrabold tracking-tight text-white">KARAD CATALYST <span class="text-indigo-400"></span></a>
+
+            <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#services" class="text-gray-400 hover:text-indigo-400 transition">Services</a>
+                <a href="#portfolio" class="text-gray-400 hover:text-indigo-400 transition">Portfolio</a>
+                <a href="#contact" class="px-3 py-1 bg-indigo-600 rounded-full text-white hover:bg-indigo-500 transition btn-glow">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section class="relative h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-black to-gray-900">
+            <!-- Subtle Animated Background Grid/Lines -->
+            <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#202022 1px, transparent 1px); background-size: 20px 20px;"></div>
+            
+            <div class="max-w-4xl mx-auto text-center z-10 p-6 hero-text-animate">
+                <p class="text-indigo-400 uppercase tracking-widest text-sm mb-4">Elevate Your Digital Presence</p>
+                <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black mb-6 leading-tight text-white">
+                    We Craft <span class="text-indigo-500">Social Momentum,</span> Not Just Content.
+                </h1>
+                <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                    A boutique social media management firm specializing in high-impact strategy, creative execution, and measurable growth.
+                </p>
+                <a href="#contact" class="inline-flex items-center space-x-2 text-lg font-semibold bg-indigo-600 px-8 py-3 rounded-xl hover:bg-indigo-500 transition duration-300 transform hover:scale-[1.03] btn-glow">
+                    <span>Inquire About Growth</span>
+                    <i data-lucide="arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. Services / Approach Section -->
+        <section id="services" class="py-24 bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-4xl font-bold text-white mb-3">Our Core Velocity</h2>
+                    <p class="text-lg text-gray-400">Strategy is our foundation. Execution is our art.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <!-- Service Card 1 -->
+                    <div class="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 reveal hover:shadow-indigo-500/20 transition duration-500">
+                        <i data-lucide="camera" class="w-10 h-10 text-indigo-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-3">We shoot</h3>
+                        <p class="text-gray-400">We  create Qualtity , Brand Specific, Organic </p>
+                    </div>
+
+                    <!-- Service Card 2 -->
+                    <div class="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 reveal hover:shadow-indigo-500/20 transition duration-500" style="transition-delay: 0.15s;">
+                        <i data-lucide="paintbrush" class="w-10 h-10 text-indigo-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-3">We edit </h3>
+                        <p class="text-gray-400">From high-quality visual assets to engaging short-form video, our content is crafted to stop the scroll and build authentic connection.</p>
+                    </div>
+
+                    <!-- Service Card 3 -->
+                    <div class="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 reveal hover:shadow-indigo-500/20 transition duration-500" style="transition-delay: 0.3s;">
+                        <i data-lucide="bar-chart-2" class="w-10 h-10 text-indigo-400 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-3">We manage </h3>
+                        <p class="text-gray-400">Our performance cycles are continuous. We use real-time analytics to refine campaigns, ensuring every interaction contributes to your bottom line.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <!-- ====== All-in-One Portfolio Gallery (drop-in replacement) ====== -->
+<section id="portfolio" class="py-24 bg-black">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8 reveal">
+      <p class="text-indigo-400 uppercase tracking-widest text-sm mb-4">Our Work</p>
+      <h2 class="text-5xl font-extrabold text-white mt-2">Portfolio</h2>
+      <p class="text-gray-400 max-w-2xl mx-auto mt-3">All assets in one gallery. Click to enlarge. Videos play when you press play.</p>
+    </div>
+
+    <div class="flex items-center justify-between mb-6 reveal">
+      <div class="text-sm text-gray-400">Assets: <span id="asset-count">0</span></div>
+      <div class="space-x-2 text-sm">
+        <button id="gallery-reload" class="px-3 py-1 bg-gray-800 rounded text-white">Reload</button>
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 reveal">
+      <!-- assets injected here -->
+    </div>
+
+    <!-- Lightbox -->
+    <div id="gallery-lightbox" class="fixed inset-0 z-60 hidden items-center justify-center bg-black/90 p-6" aria-hidden="true" role="dialog">
+      <div class="w-full max-w-5xl">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 id="lb-title" class="text-white text-lg font-semibold"></h3>
+            <div id="lb-meta" class="text-sm text-gray-400"></div>
+          </div>
+          <div class="space-x-2">
+            <button id="lb-prev" class="px-3 py-2 bg-gray-800 rounded text-white">Prev</button>
+            <button id="lb-next" class="px-3 py-2 bg-gray-800 rounded text-white">Next</button>
+            <button id="lb-close" class="px-3 py-2 bg-transparent border border-gray-600 rounded text-gray-200">Close</button>
+          </div>
+        </div>
+
+        <div class="bg-gray-900 p-4 rounded-lg flex flex-col items-center">
+          <img id="lb-img" src="" alt="" class="max-h-[75vh] max-w-full rounded mb-3 object-contain hidden"/>
+          <video id="lb-video" src="" controls class="max-h-[75vh] max-w-full rounded mb-3 object-contain hidden"></video>
+          <div id="lb-caption" class="text-gray-300 text-sm mb-4"></div>
+
+          <div id="lb-thumbs" class="w-full overflow-x-auto py-2 flex gap-2 hide-scrollbar"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  // ---------- CONFIG ----------
+  // Configured for your repo:
+  const owner = 'nikheal2886';
+  const repo  = 'smm-portfoliowebsite';
+  const branch = 'main';
+  const imagesFolder = 'images'; // folder to scan (can contain subfolders)
+
+  // Optional fallback for quick local preview (static URLs)
+  const staticAssets = [
+    // Add raw URLs here if you want local preview without pushing to GitHub.
+  ];
+
+  // ---------- DOM ----------
+  const grid = document.getElementById('gallery-grid');
+  const countEl = document.getElementById('asset-count');
+  const reloadBtn = document.getElementById('gallery-reload');
+
+  const lb = document.getElementById('gallery-lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbVideo = document.getElementById('lb-video');
+  const lbTitle = document.getElementById('lb-title');
+  const lbMeta = document.getElementById('lb-meta');
+  const lbCaption = document.getElementById('lb-caption');
+  const lbClose = document.getElementById('lb-close');
+  const lbPrev = document.getElementById('lb-prev');
+  const lbNext = document.getElementById('lb-next');
+  const lbThumbs = document.getElementById('lb-thumbs');
+
+  // State
+  let assets = []; // flattened list { type:'image'|'video', src, name, path }
+  let activeIndex = -1;
+
+  // helpers
+  function isVideo(name) { return /\.(mp4|webm|mov)$/i.test(name); }
+  function isImage(name) { return /\.(jpe?g|png|webp|avif|gif)$/i.test(name); }
+  function prettify(name) {
+    return name.replace(/\.[^/.]+$/, '').replace(/[-_]/g,' ').replace(/\b\w/g, c=>c.toUpperCase());
+  }
+
+  // render gallery grid
+  function renderGrid(list) {
+    grid.innerHTML = '';
+    list.forEach((a, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'bg-gray-800 rounded-2xl overflow-hidden p-0 border border-gray-700 focus:outline-none gallery-item';
+      btn.setAttribute('aria-label', 'Open asset ' + (i+1));
+      btn.innerHTML = `
+        <div class="aspect-video overflow-hidden relative">
+          ${a.type === 'image' ? 
+            `<img loading="lazy" src="${a.src}" alt="${a.name||''}" class="w-full h-full object-cover">` :
+            `<div class="w-full h-full bg-gray-700 flex items-center justify-center text-white/90"><svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-6.518 3.76A.75.75 0 017 14.33V9.67a.75.75 0 011.234-.645l6.518 3.763a.75.75 0 010 1.29z"/></svg></div>`
+          }
+        </div>
+        <div class="p-3 text-left">
+          <div class="text-sm font-medium text-white truncate">${a.name || ''}</div>
+          <div class="text-xs text-gray-400">Tap to view</div>
+        </div>
+      `;
+      btn.addEventListener('click', () => openLightbox(i));
+      grid.appendChild(btn);
+    });
+    countEl.textContent = list.length;
+    grid.classList.add('active');
+  }
+
+  // lightbox behavior
+  function openLightbox(index) {
+    activeIndex = index;
+    const a = assets[index];
+    if (!a) return;
+    lbTitle.textContent = a.name || prettify(a.path || a.src);
+    lbCaption.textContent = a.path || '';
+    renderThumbs();
+    showAsset(index);
+    lb.classList.remove('hidden');
+    lb.setAttribute('aria-hidden','false');
+  }
+
+  function renderThumbs() {
+    lbThumbs.innerHTML = '';
+    assets.forEach((a, i) => {
+      const t = document.createElement('button');
+      t.className = 'flex-none rounded overflow-hidden border border-gray-700';
+      t.style.width = '96px';
+      t.innerHTML = a.type === 'image' ? `<img loading="lazy" src="${a.src}" alt="thumb ${i+1}" class="w-full h-20 object-cover">` : `<div class="w-full h-full bg-gray-700 flex items-center justify-center text-white/80"><svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-6.518 3.76A.75.75 0 017 14.33V9.67a.75.75 0 011.234-.645l6.518 3.763a.75.75 0 010 1.29z"/></svg></div>`;
+      t.addEventListener('click', (e)=>{ e.stopPropagation(); showAsset(i); });
+      lbThumbs.appendChild(t);
+    });
+  }
+
+  function showAsset(i) {
+    if (i < 0) i = assets.length - 1;
+    if (i >= assets.length) i = 0;
+    activeIndex = i;
+    const a = assets[i];
+    if (!a) return;
+
+    // pause current video
+    try { if (!lbVideo.paused) { lbVideo.pause(); lbVideo.currentTime = 0; } } catch(e){}
+
+    if (a.type === 'image') {
+      lbVideo.classList.add('hidden'); lbVideo.src = '';
+      lbImg.src = a.src; lbImg.classList.remove('hidden');
+    } else {
+      lbImg.classList.add('hidden'); lbImg.src = '';
+      lbVideo.src = a.src; lbVideo.classList.remove('hidden');
+      // no autoplay — user must press play (as requested)
+    }
+    lbMeta.textContent = `${i+1} / ${assets.length}`;
+    // thumbnail highlight
+    Array.from(lbThumbs.children).forEach((btn, idx) => btn.style.outline = (idx === i) ? '2px solid rgba(99,102,241,0.9)' : 'none');
+  }
+
+  function closeLightbox() {
+    try { lbVideo.pause(); lbVideo.currentTime = 0; } catch(e){}
+    lb.classList.add('hidden'); lb.setAttribute('aria-hidden','true'); activeIndex = -1;
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', ()=> showAsset(activeIndex - 1));
+  lbNext.addEventListener('click', ()=> showAsset(activeIndex + 1));
+  lb.addEventListener('click', (e)=> { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', (e)=> {
+    if (lb.classList.contains('hidden')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showAsset(activeIndex - 1);
+    if (e.key === 'ArrowRight') showAsset(activeIndex + 1);
+  });
+
+  // ---------- GitHub fetching (scan images/ and subfolders) ----------
+  async function fetchAllAssets() {
+    // placeholders guard
+    if (!owner || !repo || owner === 'YOUR_GITHUB_USERNAME' || repo === 'YOUR_REPO_NAME') {
+      if (staticAssets.length) { assets = staticAssets; renderGrid(assets); }
+      else console.warn('Gallery: set owner/repo or add staticAssets for fallback.');
+      return;
+    }
+
+    try {
+      assets = [];
+      // fetch top-level listing
+      const rootUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${imagesFolder}?ref=${branch}`;
+      const res = await fetch(rootUrl);
+      if (!res.ok) throw new Error('GitHub API error: ' + res.status);
+      const entries = await res.json();
+
+      // helper to process an array of entries (files) and push matching assets
+      const processFiles = (files, pathPrefix='') => {
+        (files || []).forEach(f => {
+          if (f.type !== 'file') return;
+          if (isImage(f.name)) assets.push({ type:'image', src: f.download_url, name: prettify(f.name), path: pathPrefix + f.name });
+          else if (isVideo(f.name)) assets.push({ type:'video', src: f.download_url, name: prettify(f.name), path: pathPrefix + f.name });
+        });
+      };
+
+      // first add files directly inside imagesFolder
+      const filesRoot = entries.filter(e => e.type === 'file');
+      processFiles(filesRoot, '');
+
+      // then for each directory, fetch its contents and add files
+      const dirs = entries.filter(e => e.type === 'dir');
+      for (const d of dirs) {
+        try {
+          const dirRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${imagesFolder}/${d.name}?ref=${branch}`);
+          if (!dirRes.ok) { console.warn('Failed to fetch folder', d.name, dirRes.status); continue; }
+          const dirFiles = await dirRes.json();
+          processFiles(dirFiles, d.name + '/');
+        } catch (err) {
+          console.error('Error fetching folder', d.name, err);
+        }
+      }
+
+      // final: if empty and static fallback exists use it
+      if (assets.length === 0 && staticAssets.length) assets = staticAssets;
+
+      renderGrid(assets);
+    } catch (err) {
+      console.error('Failed to fetch assets from GitHub:', err);
+      if (staticAssets.length) { assets = staticAssets; renderGrid(assets); }
+    }
+  }
+
+  // reload button
+  reloadBtn.addEventListener('click', fetchAllAssets);
+
+  // initial run
+  document.addEventListener('DOMContentLoaded', ()=> setTimeout(fetchAllAssets, 200));
+
+  // expose for debug
+  window.__KARADS_gallery = { fetchAllAssets, assets };
+
+})();
+</script>
+<!-- ====== End All-in-One Portfolio Gallery ====== -->
+
+        <section id="team" class="relative py-24 md:py-32 overflow-hidden bg-gradient-to-br from-gray-950 to-black border-t border-indigo-900/50">
+    <!-- Background Animated Grid/Pattern - More prominent --><div class="absolute inset-0 z-0 opacity-15" style="background-image: linear-gradient(rgba(147, 51, 234, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(147, 51, 234, 0.05) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <div class="absolute inset-0 z-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent opacity-20"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16 reveal-header">
+            <h2 class="text-5xl lg:text-6xl font-extrabold text-white mb-4 leading-tight">
+                The Architects of <span class="text-indigo-400">KARADS</span>
+            </h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Meet the strategic minds and creative forces dedicated to amplifying your brand's presence and impact.
+            </p>
+        </div>
+
+       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Team Member 1: Swapnil Karad (Frame Added) -->
+                    <div class="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 reveal text-center team-card transition duration-500">
+                        <div class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-indigo-500 overflow-hidden shadow-lg bg-gray-700">
+                            <!-- Placeholder Image for Swapnil -->
+                            <img src="https://placehold.co/96x96/4A00B7/FFFFFF?text=Swapnil" alt="Swapnil Karad" class="w-full h-full object-cover transition duration-500 grayscale hover:grayscale-0"/>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-1">Swapnil Karad</h3>
+                        <p class="text-indigo-400 font-semibold mb-3">Director of Strategy & Founding Partner</p>
+                        <p class="text-gray-400 text-sm">Swapnil architects the high-level strategies that define client growth paths, ensuring every campaign is aligned with market opportunity and scalable impact.</p>
+                    </div>
+
+                    <!-- Team Member 2: Nikhil Karad (Frame Added) -->
+<div class="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 reveal text-center team-card transition duration-500" style="transition-delay: 0.15s;">
+    <div class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-indigo-500 overflow-hidden shadow-lg bg-gray-700">
+        <!-- The text causing the overlap has been removed from inside the image frame. -->
+                            <img src="https://placehold.co/96x96/4A00B7/FFFFFF?text=Nikhil" alt="Nikhil Karad" class="w-full h-full object-cover transition duration-500 grayscale hover:grayscale-0"/>
+    </div>
+    <h3 class="text-2xl font-bold text-white mb-1">Nikhil Karad</h3>
+    <p class="text-indigo-400 font-semibold mb-3">Chief Executive Officer (CEO)</p>
+    <p class="text-gray-400 text-sm">As the CEO, Nikhil drives the company's vision, operations, and business development, fostering a culture of excellence and client-centric innovation.</p>
+</div>
+                    <!-- Team Member 3: Deesha Jadhav (Frame Added) -->
+                    <div class="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 reveal text-center team-card transition duration-500" style="transition-delay: 0.3s;">
+                        <div class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-indigo-500 overflow-hidden shadow-lg bg-gray-700">
+                            <!-- Placeholder Image for Deesha -->
+                            <img src="https://placehold.co/96x96/4A00B7/FFFFFF?text=Deesha" alt="Deesha Jadhav" class="w-full h-full object-cover transition duration-500 grayscale hover:grayscale-0"/>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-1">Deesha Jadhav</h3>
+                        <p class="text-indigo-400 font-semibold mb-3">Lead Content Strategist & Editorial Director</p>
+                        <p class="text-gray-400 text-sm">Deesha leads the creative team, ensuring all content is expertly crafted, on-brand, and optimized for maximum engagement across all social platforms.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    <style>
+        /* Specific animations for this section to ensure uniqueness */
+        @keyframes pulse-icon {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); opacity: 0.9; }
+            100% { transform: scale(1); }
+        }
+        .icon-pulse {
+            animation: pulse-icon 2s infinite ease-in-out;
+        }
+
+        /* Reveal animations for this section */
+        .reveal-header {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal-header.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(60px) scale(0.95);
+            transition: opacity 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealHeader = document.querySelector('.reveal-header');
+            const revealItems = document.querySelectorAll('.reveal-item');
+            
+            const observerOptions = {
+                rootMargin: '0px 0px -15% 0px', // Trigger when 15% of element is in view
+                threshold: 0.1
+            };
+
+            const headerObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const itemObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            headerObserver.observe(revealHeader);
+            revealItems.forEach(item => {
+                itemObserver.observe(item);
+            });
+
+            // Ensure Lucide icons are re-created if this snippet is loaded dynamically
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</section>
+
+        <!-- 4. Contact Section -->
+        <section id="contact" class="py-24 bg-gray-900 border-t border-gray-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-5xl font-extrabold text-white mb-3">Ready to Build Momentum?</h2>
+                    <p class="text-xl text-gray-400">Let's discuss your next social media breakthrough.</p>
+                </div>
+                
+                <form id="contact-form" class="space-y-6 bg-gray-800 p-8 sm:p-12 rounded-2xl shadow-2xl reveal border border-gray-700">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-indigo-500 focus:border-indigo-500 transition duration-300">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-indigo-500 focus:border-indigo-500 transition duration-300">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="company" class="block text-sm font-medium text-gray-300 mb-2">Company/Brand Name</label>
+                        <input type="text" id="company" name="company" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-indigo-500 focus:border-indigo-500 transition duration-300">
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300 mb-2">How can we help you grow?</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-indigo-500 focus:border-indigo-500 transition duration-300"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full inline-flex justify-center items-center space-x-2 text-lg font-semibold bg-indigo-600 px-6 py-3 rounded-xl hover:bg-indigo-500 transition duration-300 transform hover:scale-[1.01] btn-glow">
+                        <span>Send Consultation Request</span>
+                        <i data-lucide="send"></i>
+                    </button>
+
+                    <!-- Confirmation Message Container -->
+                    <div id="confirmation-message" class="hidden mt-4 p-4 rounded-lg bg-green-900/50 text-green-400 border border-green-700 text-center font-medium">
+                        Thank you for your inquiry! We'll be in touch soon!
+                    </div>
+                </form>
+
+                <div class="text-center mt-12 reveal" style="transition-delay: 0.3s;">
+                    <p class="text-gray-500 mb-2">Or reach us directly:</p>
+                    <p class="text-lg font-medium text-gray-300">
+                        <i data-lucide="mail" class="w-4 h-4 inline mr-2 text-indigo-400"></i>hello@KARADS.com
+                    </p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p class="mb-4 text-sm">&copy; 2025 KARADS . Crafted for Momentum.</p>
+            <div class="flex justify-center space-x-6">
+                <!-- Social Icons -->
+                <a href="#" class="text-gray-400 hover:text-indigo-400 transition" aria-label="Instagram"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-indigo-400 transition" aria-label="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-indigo-400 transition" aria-label="Twitter/X"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Icons and Scroll Reveal -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Scroll Reveal Logic using Intersection Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Stop observing once element is visible
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                // Root margin ensures the animation triggers when the element is 10% inside the viewport
+                rootMargin: '0px 0px -10% 0px',
+                threshold: 0.1
+            });
+
+            reveals.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // 2. Contact Form Submission Handling (No Backend)
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const confirmationMessage = document.getElementById('confirmation-message');
+            
+            // Disable button and show loading state
+            submitButton.textContent = 'Sending...';
+            submitButton.classList.add('opacity-60', 'cursor-not-allowed');
+            
+            // Simulate API call delay (2 seconds)
+            setTimeout(() => {
+                // Reset form fields
+                form.reset();
+
+                // Show confirmation message
+                confirmationMessage.classList.remove('hidden');
+                
+                // Reset button state
+                submitButton.textContent = 'Send Consultation Request';
+                submitButton.classList.remove('opacity-60', 'cursor-not-allowed');
+
+                // Hide confirmation message after 5 seconds
+                setTimeout(() => {
+                    confirmationMessage.classList.add('hidden');
+                }, 5000);
+
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
